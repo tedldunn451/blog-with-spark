@@ -35,4 +35,12 @@ public class BlogEntry {
     public List<BlogComment> getComments() {
         return comments;
     }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setEntry(String entry) {
+        this.entry = entry;
+    }
 }
