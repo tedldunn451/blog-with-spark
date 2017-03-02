@@ -6,12 +6,10 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Blogging With Spark</title>
-    <link href="https://fonts.gooleapis.com/css?family=Noto+Serif:400,400italic,700|Noto+Sans:700,400"
-          rel="stylesheet" type="text/css" />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-    <link rel="stylesheet" href="/normalize.css" />
-    <link rel="stylesheet" href="/site.css" />
+    <title>{{#block "title"}}Blogging With Spark{{/block}}</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/css/normalize.css" />
+    <link rel="stylesheet" href="/css/site.css" />
 </head>
 <body>
     <header>
@@ -31,6 +29,12 @@
     {{/block}}
 
 {{#block "footer" }}
+    <footer>
+        <div>
+            <a href="#">Contact Us</a>&nbsp;&nbsp;&bull;&nbsp;&nbsp;
+            <a href="#">Terms</a>
+        </div>
+    </footer>
     </body>
     </html>
 {{/block}}
