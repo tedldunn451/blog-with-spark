@@ -10,12 +10,12 @@ import java.util.List;
 public class BlogEntry {
     private String title;
     private LocalDateTime dateTime;
-    private String entry;
+    private String body;
     private List<BlogComment> comments;
 
-    public BlogEntry(String title, String entry) {
+    public BlogEntry(String title, String body) {
         this.title = title;
-        this.entry = entry;
+        this.body = body;
         dateTime = LocalDateTime.now();
         comments = new ArrayList<>();
     }
@@ -28,8 +28,8 @@ public class BlogEntry {
         return dateTime;
     }
 
-    public String getEntry() {
-        return entry;
+    public String getBody() {
+        return body;
     }
 
     public List<BlogComment> getComments() {
@@ -40,7 +40,7 @@ public class BlogEntry {
         this.title = title;
     }
 
-    public void setEntry(String entry) {
-        this.entry = entry;
+    public void setEntry(String body) {
+        this.body = body;
     }
 }
