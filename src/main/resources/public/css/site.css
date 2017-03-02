@@ -50,7 +50,9 @@ footer a {
 	padding-bottom: 1px;
 }
 
-
+ul {
+    list-style-type:none;
+}
 
 /* ==========================================================================
    Button Styles
@@ -115,6 +117,7 @@ p a {
 }
 a.link {
 	font-weight: bold;
+	text-decoration: none;
 	text-transform: uppercase;
 	font-size: 14px;
 	padding-bottom: 1px;
@@ -140,21 +143,21 @@ a.link {
 .password h2 {
 	margin-bottom: 35px;
 }
-.entry-list article {
+.entry-list-article {
 	margin-bottom: 70px;
 	text-align: center;
 }
-.entry-list article:last-child {
+.entry-list-article:last-child {
 	margin-bottom: 5px;
 }
-.entry-list article h2 {
+.entry-list-article h2 {
 	margin-bottom: 8px;
 }
-.entry-list article a {
+.entry-list-article a {
 	text-decoration: none;
 	color: #000;
 }
-.entry-list time {
+time {
 	color: #888;
 }
 .entry-list.single {
