@@ -8,5 +8,7 @@ import java.util.List;
 public interface BlogEntryDAO {
     boolean add(BlogEntry entry);
 
+    boolean delete(BlogEntry entry);
+
     List<BlogEntry> findAll();
 }

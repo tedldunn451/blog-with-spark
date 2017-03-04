@@ -19,6 +19,11 @@ public class BlogEntryDAOImplementation implements BlogEntryDAO {
     }
 
     @Override
+    public boolean delete(BlogEntry entry) {
+        return blog.remove(entry);
+    }
+
+    @Override
     public List<BlogEntry> findAll() {
         return new ArrayList<>(blog);
     }
