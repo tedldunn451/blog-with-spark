@@ -1,6 +1,7 @@
 package dunn.ted.java.model;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,22 +10,24 @@ import java.util.List;
  */
 public class BlogEntry {
     private String title;
-    private LocalDateTime dateTime;
+    private String dateTime;
     private String body;
     private List<BlogComment> comments;
 
     public BlogEntry(String title, String body) {
         this.title = title;
         this.body = body;
-        dateTime = LocalDateTime.now();
-        comments = new ArrayList<>();
+        LocalDateTime thisTime = LocalDateTime.now();
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("MMMM d, yyyy  h:mm a");
+        this.dateTime = thisTime.format(format);
+        this.comments = new ArrayList<>();
     }
 
     public String getTitle() {
         return title;
     }
 
-    public LocalDateTime getDateTime() {
+    public String getDateTime() {
         return dateTime;
     }
 
