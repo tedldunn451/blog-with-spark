@@ -6,10 +6,10 @@ import java.util.List;
 /**
  * Created by Ted on 3/1/2017.
  */
-public class BlogEntryDAOImplementation implements BlogEntryDAO {
+public class BlogDAOImplementation implements BlogDAO {
     private List<BlogEntry> blog;
 
-    public BlogEntryDAOImplementation() {
+    public BlogDAOImplementation() {
         blog = new ArrayList<>();
     }
 
