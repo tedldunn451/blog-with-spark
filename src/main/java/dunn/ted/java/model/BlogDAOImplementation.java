@@ -27,4 +27,14 @@ public class BlogDAOImplementation implements BlogDAO {
     public List<BlogEntry> findAll() {
         return new ArrayList<>(blog);
     }
+
+    @Override
+    public BlogEntry findEntryBySlug(String slug) {
+        return blog.stream()
+                .filter(entry -> entry.getSlug().equals(slug))
+                .findFirst()
+                .orElseThrow(NotFoundException::new);
+
+    }
+
 }

@@ -48,11 +48,12 @@ public class App {
             return new ModelAndView(model, "index.hbs");
         }, new HandlebarsTemplateEngine());
 
-        get("/detail", (req, res) -> {
+        get("/detail/:slug", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-            model.put("entry", entry1);
+            model.put("entry", blog.findEntryBySlug(req.params("slug")));
             return new ModelAndView(model, "detail.hbs");
         }, new HandlebarsTemplateEngine());
+
 
         get("/new", (req, res) -> {
             Map<String, Object> model = new HashMap<>();

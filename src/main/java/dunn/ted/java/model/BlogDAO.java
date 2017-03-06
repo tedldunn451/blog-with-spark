@@ -11,4 +11,7 @@ public interface BlogDAO {
     boolean delete(BlogEntry entry);
 
     List<BlogEntry> findAll();
+
+    BlogEntry findEntryBySlug(String slug);
+
 }
