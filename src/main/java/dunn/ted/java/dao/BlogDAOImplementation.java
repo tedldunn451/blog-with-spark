@@ -1,4 +1,7 @@
-package dunn.ted.java.model;
+package dunn.ted.java.dao;
+
+import dunn.ted.java.model.BlogEntry;
+import dunn.ted.java.model.NotFoundException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +37,5 @@ public class BlogDAOImplementation implements BlogDAO {
                 .filter(entry -> entry.getSlug().equals(slug))
                 .findFirst()
                 .orElseThrow(NotFoundException::new);
-
     }
-
 }

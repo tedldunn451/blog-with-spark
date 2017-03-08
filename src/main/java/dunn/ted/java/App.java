@@ -1,8 +1,9 @@
 package dunn.ted.java;
 
+import dunn.ted.java.model.BlogComment;
 import dunn.ted.java.model.BlogEntry;
-import dunn.ted.java.model.BlogDAO;
-import dunn.ted.java.model.BlogDAOImplementation;
+import dunn.ted.java.dao.BlogDAO;
+import dunn.ted.java.dao.BlogDAOImplementation;
 import spark.ModelAndView;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 
@@ -20,6 +21,8 @@ public class App {
         BlogDAO blog = new BlogDAOImplementation();
 
         BlogEntry entry1 = new BlogEntry("My Thoughts on Monday ", "Mondays are no fun!");
+        BlogComment comment1 = new BlogComment("Fred Jones", "FIRST!");
+        entry1.addComment(comment1);
         blog.add(entry1);
         BlogEntry entry2 = new BlogEntry("My Thoughts on Wednesday", "Hump Day!");
         blog.add(entry2);
@@ -27,14 +30,14 @@ public class App {
         blog.add(entry3);
 
         before((req, res) -> {
-            if (req.cookie("password") != null) {
-                req.attribute("password", req.cookie("password"));
+            if (req.cookie("username") != null) {
+                req.attribute("username", req.cookie("username"));
             }
         });
 
 /*
         before("/new", (req, res) -> {
-            if (req.cookie("password") != "admin") {
+            if (req.cookie("username") != "admin") {
                 //setFlashMessage(req,"Whoops, please sign in first!");
                 res.redirect("login");
                 halt();
@@ -54,6 +57,14 @@ public class App {
             return new ModelAndView(model, "detail.hbs");
         }, new HandlebarsTemplateEngine());
 
+        post("/detail/:slug/comment", (req, res) -> {
+            BlogEntry entry = blog.findEntryBySlug(req.params("slug"));
+            String author = req.queryParams("author");
+            String comment = req.queryParams("comment");
+            entry.addComment(new BlogComment(author, comment));
+            res.redirect("/");
+            return null;
+        });
 
         get("/new", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
@@ -74,9 +85,9 @@ public class App {
         }, new HandlebarsTemplateEngine());
 
         post("/login", (req, res) -> {
-            String password = req.queryParams("password");
-            res.cookie("password", password);
-            if (req.cookie("password") == password) {
+            String password = req.queryParams("username");
+            res.cookie("username", password);
+            if (req.cookie("username") == password) {
                 res.redirect("/new");
             } else {
                 res.redirect("/");

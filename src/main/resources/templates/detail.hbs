@@ -19,17 +19,26 @@
         <div class="container">
             <h2>Comments</h2>
             <div class="comment">
-                <strong>Carling Kirk</strong>
-                <time datetime="2016-01-31 1:00">January 31, 2016 at 1:00</time>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut rhoncus felis, vel tincidunt neque. Vestibulum ut metus eleifend, malesuada nisl at, scelerisque sapien. Vivamus pharetra massa libero, sed feugiat turpis efficitur at.</p>
+                <ul>
+                    {{#each entry.comments}}
+                        <li class="entry-list-article">
+                            <article>
+                                <strong>{{this.author}}</strong>
+                                <time>{{dateTime}}</time>
+                                <p>{{this.comment}}</p>
+                            </article>
+                        </li>
+                    {{/each}}
+                </ul>
             </div>
             <div class="new-comment">
-                <form>
-                    <label for="name"> Name</label>
-                    <input type="text" name="name"><br>
+                <form action="/detail/{{entry.slug}}/comment" method="post">
+                    <label for="author"> Name</label>
+                    <input type="text" name="author"><br>
                     <label for="comment">Comment</label>
                     <textarea rows="5" name="comment"></textarea>
                     <input type="submit" value="Post Comment" class="button">
+                    <a href="/" class="button button-secondary">Cancel</a>
                 </form>
             </div>
         </div>

@@ -1,4 +1,6 @@
-package dunn.ted.java.model;
+package dunn.ted.java.dao;
+
+import dunn.ted.java.model.BlogEntry;
 
 import java.util.List;
 

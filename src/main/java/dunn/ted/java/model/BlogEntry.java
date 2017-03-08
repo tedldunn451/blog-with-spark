@@ -12,9 +12,7 @@ import java.util.List;
  * Created by Ted on 3/1/2017.
  */
 public class BlogEntry {
-    private static int id = 0;
 
-    private int postId;
     private String title;
     private String dateTime;
     private String body;
@@ -22,7 +20,6 @@ public class BlogEntry {
     private String slug;
 
     public BlogEntry(String title, String body) {
-        this.postId = ++id;
         this.title = title;
         this.body = body;
         LocalDateTime thisTime = LocalDateTime.now();
@@ -35,10 +32,8 @@ public class BlogEntry {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
-    public int getPostId() { return postId; }
 
     public String getTitle() {
         return title;
@@ -62,7 +57,9 @@ public class BlogEntry {
         this.title = title;
     }
 
-    public void setEntry(String body) {
+    public void setBody(String body) {
         this.body = body;
     }
+
+    public void addComment(BlogComment comment) {  this.comments.add(comment); }
 }
