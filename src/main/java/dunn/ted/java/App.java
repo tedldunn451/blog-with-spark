@@ -62,7 +62,7 @@ public class App {
             String author = req.queryParams("author");
             String comment = req.queryParams("comment");
             entry.addComment(new BlogComment(author, comment));
-            res.redirect("/");
+            res.redirect("/detail/" + entry.getSlug());
             return null;
         });
 
