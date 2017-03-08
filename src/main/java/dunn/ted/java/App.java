@@ -30,20 +30,17 @@ public class App {
         blog.add(entry3);
 
         before((req, res) -> {
-            if (req.cookie("username") != null) {
+            if(req.cookie("username") != null) {
                 req.attribute("username", req.cookie("username"));
             }
         });
 
-/*
         before("/new", (req, res) -> {
-            if (req.cookie("username") != "admin") {
-                //setFlashMessage(req,"Whoops, please sign in first!");
-                res.redirect("login");
+            if(req.cookie("username") == null || !req.cookie("username").equals("admin")) {
+                res.redirect("/login");
                 halt();
             }
         });
-*/
 
         get("/", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
@@ -78,23 +75,16 @@ public class App {
             return null;
         });
 
-/*
         get("/login", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             return new ModelAndView(model, "login.hbs");
         }, new HandlebarsTemplateEngine());
 
         post("/login", (req, res) -> {
-            String password = req.queryParams("username");
-            res.cookie("username", password);
-            if (req.cookie("username") == password) {
-                res.redirect("/new");
-            } else {
-                res.redirect("/");
-            }
+            res.cookie("username", req.queryParams("username"));
+            res.redirect("/new");
             return null;
         });
-*/
     }
 }
 
