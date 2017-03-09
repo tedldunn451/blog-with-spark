@@ -157,7 +157,7 @@ a.link {
 	text-decoration: none;
 	color: #000;
 }
-time {
+.entry-list time {
 	color: #888;
 }
 .entry-list.single {
