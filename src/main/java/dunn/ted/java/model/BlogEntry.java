@@ -26,12 +26,7 @@ public class BlogEntry {
         DateTimeFormatter format = DateTimeFormatter.ofPattern("MMMM d, yyyy  h:mm a");
         this.dateTime = thisTime.format(format);
         this.comments = new ArrayList<>();
-        try {
-            Slugify slugify = new Slugify();
-            slug = slugify.slugify(title);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        this.slug = setSlug(title);
     }
 
 
@@ -53,8 +48,20 @@ public class BlogEntry {
 
     public String getSlug() { return slug; }
 
+    private String setSlug(String title) {
+        try {
+            Slugify slugify = new Slugify();
+            slug = slugify.slugify(title);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return slug;
+    }
+
     public void setTitle(String title) {
+
         this.title = title;
+        this.slug = setSlug(title);
     }
 
     public void setBody(String body) {

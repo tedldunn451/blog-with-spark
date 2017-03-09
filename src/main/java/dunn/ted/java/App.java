@@ -35,6 +35,13 @@ public class App {
             }
         });
 
+        before("/edit/*", (req, res) -> {
+            if(req.cookie("username") == null || !req.cookie("username").equals("admin")) {
+                res.redirect("/login");
+                halt();
+            }
+        });
+
         before("/new", (req, res) -> {
             if(req.cookie("username") == null || !req.cookie("username").equals("admin")) {
                 res.redirect("/login");
@@ -71,6 +78,20 @@ public class App {
         post("/new", (req, res) -> {
             BlogEntry entry = new BlogEntry(req.queryParams("title"), req.queryParams("entry"));
             blog.add(entry);
+            res.redirect("/");
+            return null;
+        });
+
+        get("/edit/:slug", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            model.put("entry", blog.findEntryBySlug(req.params("slug")));
+            return new ModelAndView(model, "edit.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        post("/edit/:slug/update", (req, res) -> {
+            BlogEntry entry = blog.findEntryBySlug(req.params("slug"));
+            entry.setTitle(req.queryParams("title"));
+            entry.setBody(req.queryParams("entry"));
             res.redirect("/");
             return null;
         });
