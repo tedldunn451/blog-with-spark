@@ -90,7 +90,9 @@ public class App {
 
         post("/edit/:slug/update", (req, res) -> {
             BlogEntry entry = blog.findEntryBySlug(req.params("slug"));
-            entry.setTitle(req.queryParams("title"));
+            String title = req.queryParams("title");
+            if ( !title.equals("") )
+                entry.setTitle(title);
             entry.setBody(req.queryParams("entry"));
             res.redirect("/");
             return null;
@@ -103,7 +105,7 @@ public class App {
 
         post("/login", (req, res) -> {
             res.cookie("username", req.queryParams("username"));
-            res.redirect("/new");
+            res.redirect("/");
             return null;
         });
     }
