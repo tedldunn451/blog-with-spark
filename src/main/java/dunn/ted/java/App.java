@@ -18,6 +18,7 @@ import static spark.Spark.*;
 public class App {
     public static void main(String[] args) {
         staticFileLocation("/public");
+
         BlogDAO blog = new BlogDAOImplementation();
 
         BlogEntry entry1 = new BlogEntry("My Thoughts on Monday ", "Mondays are no fun!");
@@ -94,6 +95,13 @@ public class App {
             if ( !title.equals("") )
                 entry.setTitle(title);
             entry.setBody(req.queryParams("entry"));
+            res.redirect("/");
+            return null;
+        });
+
+        get("/delete/:slug", (req, res) -> {
+            BlogEntry entry = blog.findEntryBySlug(req.params("slug"));
+            blog.delete(entry);
             res.redirect("/");
             return null;
         });

@@ -11,6 +11,7 @@
                     <label for="entry">Entry</label>
                     <textarea rows="5" id="entry" name="entry">{{ entry.body }}</textarea>
                     <input type="submit" value="Edit Entry" class="button">
+                    <a href="/delete/{{ entry.slug }}" class="button button-secondary">Delete</a>
                     <a href="/" class="button button-secondary">Cancel</a>
                 </form>
             </div>
